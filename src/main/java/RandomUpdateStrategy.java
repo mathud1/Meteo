@@ -11,6 +11,6 @@ public class RandomUpdateStrategy implements UpdateStrategy {
         Random random = new Random();
         stacja.setTemperature(random.nextInt(40));
         stacja.setWind(random.nextInt(99));
-        stacja.setCloudCover("stormy");
+        stacja.setCloudCover(99);
     }
 }
