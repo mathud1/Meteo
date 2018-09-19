@@ -16,14 +16,6 @@ public enum WeatherStation {
     private double humidity;
     List<Weather> overall;
 
-    public List<Weather> getOverall() {
-        return overall;
-    }
-
-    public void setOverall(List<Weather> overall) {
-        this.overall = overall;
-    }
-
     private boolean on;
 
     private UpdateStrategy updateStrategy;
@@ -76,6 +68,14 @@ public enum WeatherStation {
         this.cloudCover = cloudCover;
     }
 
+    public List<Weather> getOverall() {
+        return overall;
+    }
+
+    public void setOverall(List<Weather> overall) {
+        this.overall = overall;
+    }
+
     public boolean isOn() {
         return on;
     }
@@ -90,6 +90,7 @@ public enum WeatherStation {
 
     public void setUpdateStrategy(UpdateStrategy updateStrategy) {
         this.updateStrategy = updateStrategy;
+
     }
 
     public void update() {
@@ -111,14 +112,15 @@ public enum WeatherStation {
                     System.out.println("Pressure: " + pressure + " hpa");
                     System.out.println("Humidity: " + humidity + " %");
                     System.out.println("Cloud cover: " + cloudCover + " %");
-                    for (Weather object: overall)
+                    for (Weather object : overall)
                         System.out.println(object.getMoreInfo());
                     try {
-                        Thread.sleep(1000);
+                        Thread.sleep(5000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
+
             });
             weatherThread1.start();
         }
@@ -130,12 +132,21 @@ public enum WeatherStation {
 
     public static void main(String[] args) throws InterruptedException {
 
-        WeatherStation stacja = WeatherStation.INSTANCE;
-        stacja.setUpdateStrategy(new OwmUpdateStrategy());
-        stacja.start();
-        Thread.sleep(1000);
-        stacja.stop();
-    }
+        for (Locations location : Locations.values()) {
 
+            WeatherStation stacja = WeatherStation.INSTANCE;
+
+            stacja.setUpdateStrategy(new OwmUpdateStrategy(location.getName()));
+            stacja.start();
+            Thread.sleep(1000);
+            location.setTemperature(stacja.temperature);
+            stacja.stop();
+
+
+        }
+        for (Locations location : Locations.values()) {
+            System.out.println(location.getTemperature());
+        }
+    }
 
 }
