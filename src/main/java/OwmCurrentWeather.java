@@ -5,7 +5,7 @@ import net.aksingh.owmjapis.model.param.Weather;
 
 import java.util.List;
 
-public class Owm {
+public class OwmCurrentWeather {
 
     public static void main(String[] args)
             throws APIException {
@@ -14,7 +14,10 @@ public class Owm {
         OWM owm = new OWM("dcf890fc0ba06ef58dd0ec3a8842e983");
 
 
-        CurrentWeather cwd = owm.currentWeatherByCityName("Zug");
+
+        CurrentWeather cwd = owm.currentWeatherByCityName("Żywiec");
+
+
 
 
         System.out.println("City: " + cwd.getCityName());
@@ -30,8 +33,6 @@ public class Owm {
 
         System.out.println("Cloud cover: " + (cwd.getCloudData().getCloud()) + " %");
 
-       /* if (cwd.hasRainData())
-            System.out.println("Rain: " + (cwd.getRainData().getPrecipVol3h()));*/
 
         List<Weather> overall = cwd.getWeatherList();
 

@@ -11,21 +11,33 @@ import java.util.List;
 public class OwmUpdateStrategy implements UpdateStrategy {
 
    private OWM owm;
+   private String location;
 
+   /* public void setLocation(String location) {
+        this.location = location;
+    }*/
 
     public OwmUpdateStrategy() {
         this.owm = new OWM("dcf890fc0ba06ef58dd0ec3a8842e983");
     }
 
+    public OwmUpdateStrategy(String location) {
+        this.owm = new OWM("dcf890fc0ba06ef58dd0ec3a8842e983");
+        this.location = location;
+    }
 
     public void update() {
 
+
         CurrentWeather cwd = null;
-        try {
-            cwd = owm.currentWeatherByCityName("Zug");
-        } catch (APIException e) {
-            e.printStackTrace();
-        }
+
+
+            try {
+                cwd = owm.currentWeatherByCityName(location);
+            } catch (APIException e) {
+                e.printStackTrace();
+            }
+
 
         String localisation = cwd.getCityName();
         double windSpeed = cwd.getWindData().getSpeed() ;
