@@ -1,3 +1,5 @@
+/* To jest klasa testująca API OWM. Nie jest potrzebna dla funkcjonowania całości aplikacji */
+
 import net.aksingh.owmjapis.api.APIException;
 import net.aksingh.owmjapis.core.OWM;
 import net.aksingh.owmjapis.model.CurrentWeather;
