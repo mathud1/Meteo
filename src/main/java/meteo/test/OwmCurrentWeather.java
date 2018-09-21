@@ -1,4 +1,4 @@
-/* To jest klasa testująca API OWM. Nie jest potrzebna dla funkcjonowania całości aplikacji */
+package meteo.test;/* To jest klasa testująca API OWM. Nie jest potrzebna dla funkcjonowania całości aplikacji */
 
 import net.aksingh.owmjapis.api.APIException;
 import net.aksingh.owmjapis.core.OWM;

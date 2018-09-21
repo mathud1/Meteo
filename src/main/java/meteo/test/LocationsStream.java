@@ -1,6 +1,10 @@
-/* To jest klasa testująca enumerację po elementach klasy Locations.
+/* To jest klasa testująca enumerację po elementach klasy meteo.locations.Locations.
     Nie jest potrzebna dla funkcjonowania całości
     aplikacji */
+
+package meteo.test;
+
+import meteo.locations.Locations;
 
 /**
  * Created by Matt on 19.09.2018 at 17:57.
@@ -11,7 +15,7 @@ public class LocationsStream {
 
         //Można enumerować po elementach przez stream:
         /*
-        Locations.stream()
+        meteo.locations.Locations.stream()
                 .forEach(System.out::println);
         */
 
