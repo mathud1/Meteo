@@ -1,8 +1,6 @@
-import com.github.fedy2.weather.YahooWeatherService;
-import com.github.fedy2.weather.data.unit.DegreeUnit;
-import com.github.fedy2.weather.data.Channel;
-import javax.xml.bind.JAXBException;
-import java.io.IOException;
+// trzeba dostosować do wersji z Weather Provider
+package meteo.update;
+
 //import java.nio.channels.Channel;
 
 
@@ -10,11 +8,12 @@ import java.io.IOException;
 /**
  * Created by Matt on 11.09.2018 at 20:22.
  */
-public class YahooUpdateStrategy implements UpdateStrategy {
+/*
+public class YahooWeatherProvider implements WeatherProvider {
 
     private YahooWeatherService yahooWeatherService;
 
-    public YahooUpdateStrategy() {
+    public YahooWeatherProvider() {
         try {
             this.yahooWeatherService = new YahooWeatherService();
         } catch (JAXBException e) {
@@ -23,7 +22,7 @@ public class YahooUpdateStrategy implements UpdateStrategy {
     }
 
 
-    public void update() {
+    public void getWeatherData() {
 
         Channel channel;
         try {
@@ -39,8 +38,8 @@ public class YahooUpdateStrategy implements UpdateStrategy {
 
 
         WeatherStation stacja = WeatherStation.INSTANCE;
-        stacja.setTemperature(temperature);
-        stacja.setWind(windSpeed);
+        //stacja.setTemperature(temperature);
+        //stacja.setWind(windSpeed);
         //stacja.setCloudCover();
     }
-}
+} */

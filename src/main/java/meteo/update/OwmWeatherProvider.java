@@ -1,3 +1,6 @@
+package meteo.update;
+
+import meteo.WeatherData;
 import net.aksingh.owmjapis.api.APIException;
 import net.aksingh.owmjapis.core.OWM;
 import net.aksingh.owmjapis.model.CurrentWeather;
@@ -8,7 +11,7 @@ import java.util.List;
 /**
  * Created by Matt on 11.09.2018 at 20:41.
  */
-public class OwmUpdateStrategy implements UpdateStrategy {
+public class OwmWeatherProvider implements WeatherProvider {
 
    private OWM owm;
    private String location;
@@ -17,16 +20,16 @@ public class OwmUpdateStrategy implements UpdateStrategy {
         this.location = location;
     }*/
 
-    public OwmUpdateStrategy() {
+    public OwmWeatherProvider() {
         this.owm = new OWM("dcf890fc0ba06ef58dd0ec3a8842e983");
     }
 
-    public OwmUpdateStrategy(String location) {
+    public OwmWeatherProvider(String location) {
         this.owm = new OWM("dcf890fc0ba06ef58dd0ec3a8842e983");
         this.location = location;
     }
 
-    public void update() {
+    public WeatherData getWeatherData() {
 
 
         CurrentWeather cwd = null;
@@ -41,20 +44,24 @@ public class OwmUpdateStrategy implements UpdateStrategy {
 
         String localisation = cwd.getCityName();
         double windSpeed = cwd.getWindData().getSpeed() ;
-        long temperature = Math.round(cwd.getMainData().getTemp() - 273.15);
+        double temperature = Math.round(cwd.getMainData().getTemp() - 273.15);
         double pressure = cwd.getMainData().getPressure();
         double humidity = cwd.getMainData().getHumidity();
         double cloudCover = cwd.getCloudData().getCloud();
         List<Weather> overall = cwd.getWeatherList();
 
-        WeatherStation stacja = WeatherStation.INSTANCE;
+
+        /*WeatherStation stacja = WeatherStation.INSTANCE;
         stacja.setLocalisation(localisation);
         stacja.setWind(windSpeed);
-        stacja.setTemperature(temperature);
+        //stacja.setTemperature(temperature);
         stacja.setPressure(pressure);
         stacja.setHumidity(humidity);
         stacja.setCloudCover(cloudCover);
-        stacja.setOverall(overall);
+        stacja.setOverall(overall);*/
+
+        return new WeatherData(localisation, temperature, windSpeed, pressure, humidity, cloudCover, overall);
+
     }
 
 }
