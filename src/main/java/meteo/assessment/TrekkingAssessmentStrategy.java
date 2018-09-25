@@ -1,15 +1,17 @@
 package meteo.assessment;
 
+import meteo.WeatherData;
+
 /**
  * Created by Matt on 20.09.2018 at 19:52.
  */
 public class TrekkingAssessmentStrategy implements AssessmentStrategy {
 
 
-    //to jest do przeorania
-    public int assess() {
-            if (10 == 10)
-                return 100;
-        return 0;
+
+    //to jest do uzupełnienia
+    public int assess(WeatherData weatherData) {
+
+                return (int) weatherData.getTemperature();
     }
 }
