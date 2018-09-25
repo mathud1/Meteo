@@ -1,5 +1,6 @@
 package meteo;
 
+import meteo.assessment.TrekkingAssessmentStrategy;
 import meteo.locations.Locations;
 import meteo.update.OwmWeatherProvider;
 import meteo.update.WeatherProvider;
@@ -15,6 +16,8 @@ public enum WeatherStation {
     private boolean on;
 
     private WeatherProvider weatherProvider;
+
+    private WeatherDataContainer weatherDataContainer = new WeatherDataContainer();
 
     public boolean isOn() {
         return on;
@@ -33,11 +36,6 @@ public enum WeatherStation {
 
     }
 
-    public void update() {
-        weatherProvider.getWeatherData();
-    }
-
-
     public void start() {
         if (!on) {
             on = true;
@@ -45,17 +43,22 @@ public enum WeatherStation {
                 while (on) {
                     System.out.println("Updating...");
 
-                    WeatherData weatherData = weatherProvider.getWeatherData();
+                    for (Locations location : Locations.values()) {
+                        WeatherData weatherData = weatherProvider.getWeatherData(location);
 
-                    System.out.println("-------------------");
-                    System.out.println("Current meteo conditions in: " + weatherData.getLocalisation());
-                    System.out.println("Temperature: " + weatherData.getTemperature()+ " \'C");
-                    System.out.println("Wind speed: " + weatherData.getWind() + " m/s");
-                    System.out.println("Pressure: " + weatherData.getPressure() + " hpa");
-                    System.out.println("Humidity: " + weatherData.getHumidity() + " %");
-                    System.out.println("Cloud cover: " + weatherData.getCloudCover() + " %");
-                    for (Weather object : weatherData.getOverall())
-                        System.out.println(object.getMoreInfo());
+                        System.out.println("-------------------");
+                        System.out.println("Current meteo conditions in: " + weatherData.getLocalisation());
+                        System.out.println("Temperature: " + weatherData.getTemperature() + " \'C");
+                        System.out.println("Wind speed: " + weatherData.getWind() + " m/s");
+                        System.out.println("Pressure: " + weatherData.getPressure() + " hpa");
+                        System.out.println("Humidity: " + weatherData.getHumidity() + " %");
+                        System.out.println("Cloud cover: " + weatherData.getCloudCover() + " %");
+                        for (Weather object : weatherData.getOverall())
+                            System.out.println(object.getMoreInfo());
+                        weatherDataContainer.appendData(location, weatherData);
+                        System.out.println("Rating: " + weatherDataContainer.rateLocations(new TrekkingAssessmentStrategy()).get(location));
+                    }
+
                     try {
                         Thread.sleep(5000);
                     } catch (InterruptedException e) {
@@ -65,7 +68,10 @@ public enum WeatherStation {
 
             });
             weatherThread1.start();
+
+
         }
+
     }
 
     public void stop() {
@@ -74,19 +80,20 @@ public enum WeatherStation {
 
     public static void main(String[] args) throws InterruptedException {
 
-        for (Locations location : Locations.values()) {
+
+
 
             WeatherStation stacja = WeatherStation.INSTANCE;
 
-
-            stacja.setWeatherProvider(new OwmWeatherProvider(location.getName()));
+            stacja.setWeatherProvider(new OwmWeatherProvider());
             stacja.start();
+
             Thread.sleep(1000);
 
             stacja.stop();
 
 
-        }
+
 
     }
 

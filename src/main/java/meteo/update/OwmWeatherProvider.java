@@ -1,6 +1,7 @@
 package meteo.update;
 
 import meteo.WeatherData;
+import meteo.locations.Locations;
 import net.aksingh.owmjapis.api.APIException;
 import net.aksingh.owmjapis.core.OWM;
 import net.aksingh.owmjapis.model.CurrentWeather;
@@ -14,7 +15,6 @@ import java.util.List;
 public class OwmWeatherProvider implements WeatherProvider {
 
    private OWM owm;
-   private String location;
 
    /* public void setLocation(String location) {
         this.location = location;
@@ -24,19 +24,14 @@ public class OwmWeatherProvider implements WeatherProvider {
         this.owm = new OWM("***REMOVED***");
     }
 
-    public OwmWeatherProvider(String location) {
-        this.owm = new OWM("***REMOVED***");
-        this.location = location;
-    }
-
-    public WeatherData getWeatherData() {
+    public WeatherData getWeatherData(Locations location) {
 
 
         CurrentWeather cwd = null;
 
 
             try {
-                cwd = owm.currentWeatherByCityName(location);
+                cwd = owm.currentWeatherByCityName(location.getName());
             } catch (APIException e) {
                 e.printStackTrace();
             }
