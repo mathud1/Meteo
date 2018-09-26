@@ -7,11 +7,31 @@ import meteo.WeatherData;
  */
 public class TrekkingAssessmentStrategy implements AssessmentStrategy {
 
+    private int assessTemperature(double temp) {
+        return temp > 10 && temp < 25 ? 1 : 0;
+    }
 
+    private int assessWind(double wind) {
+       return wind < 5 ? 1 : 0;
+    }
 
-    //to jest do uzupełnienia
+    private int assessPressure(double pressure) {
+        return pressure < 1013 ? 0 : 1;
+    }
+
+    private int assessHumidity(double humidity) {
+        return humidity < 70 ? 1 : 0;
+    }
+
+    private int assessClouds(double cloudCover) {
+        return cloudCover < 50 ? 1 : 0;
+    }
+
     public int assess(WeatherData weatherData) {
 
-                return (int) weatherData.getTemperature();
+        return assessTemperature(weatherData.getTemperature()) + assessWind(weatherData.getWind())
+                + assessPressure(weatherData.getPressure()) + assessHumidity(weatherData.getHumidity())
+                + assessClouds(weatherData.getCloudCover());
+
     }
 }

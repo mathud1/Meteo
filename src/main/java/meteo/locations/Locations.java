@@ -4,29 +4,31 @@ package meteo.locations;
  * Created by Matt on 14.09.2018 at 19:24.
  */
 public enum Locations {
-    KATOWICE("Katowice"),
-    WISLA("Wisła"),
-    CIESZYN("Cieszyn"),
-    BIELSKO("Bielsko"),
-    ZYWIEC("Żywiec");
+    ISTEBNA("Istebna", "496281"),
+    WISLA("Wisła", "525053"),
+    ZWARDON("Zwardoń", "529320"),
+    BIELSKO("Bielsko", "486317"),
+    ZYWIEC("Żywiec", "529462"),
+    SZCZYRK("Szczyrk", "521739");
 
     private String name;
-    private float temperature;
+    private String yahooWoeid;
 
     Locations(String name) {
         this.name = name;
+    }
+
+    Locations(String name, String yahooWoeid) {
+        this.name = name;
+        this.yahooWoeid = yahooWoeid;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setTemperature(float temperature) {
-        this.temperature = temperature;
-    }
-
-    public float getTemperature() {
-        return temperature;
+    public String getYahooWoeid() {
+        return yahooWoeid;
     }
 
     // Można enumerować po elementach przez stream:

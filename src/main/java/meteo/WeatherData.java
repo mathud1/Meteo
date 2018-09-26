@@ -17,6 +17,7 @@ public class WeatherData {
     private double humidity;
     List<Weather> overall;
 
+    //pełny konstruktor dla wszystkich warunków
     public WeatherData(String localisation, double temperature, double wind, double pressure, double cloudCover, double humidity, List<Weather> overall) {
         this.localisation = localisation;
         this.temperature = temperature;
@@ -25,6 +26,15 @@ public class WeatherData {
         this.cloudCover = cloudCover;
         this.humidity = humidity;
         this.overall = overall;
+    }
+
+    //konstruktor dla yahoo
+    public WeatherData(String localisation, double temperature, double wind, double pressure, double humidity) {
+        this.localisation = localisation;
+        this.temperature = temperature;
+        this.wind = wind;
+        this.pressure = pressure;
+        this.humidity = humidity;
     }
 
     public String getLocalisation() {

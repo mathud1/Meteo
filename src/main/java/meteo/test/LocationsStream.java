@@ -4,8 +4,6 @@
 
 package meteo.test;
 
-import meteo.locations.Locations;
-
 /**
  * Created by Matt on 19.09.2018 at 17:57.
  */
@@ -21,8 +19,8 @@ public class LocationsStream {
 
 
         // Testowa enumeracja przez for each
-        for (Locations location : Locations.values()) {
+       /* for (Locations location : Locations.values()) {
             System.out.println(location.getTemperature());
-        }
+        }*/
     }
 }
