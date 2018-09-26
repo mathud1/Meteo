@@ -1,14 +1,17 @@
-// trzeba dostosować do wersji z Weather Provider
 package meteo.update;
 
-//import java.nio.channels.Channel;
+import com.github.fedy2.weather.YahooWeatherService;
+import com.github.fedy2.weather.data.unit.DegreeUnit;
+import meteo.WeatherData;
+import meteo.locations.Locations;
 
-
+import javax.xml.bind.JAXBException;
+import java.io.IOException;
 
 /**
  * Created by Matt on 11.09.2018 at 20:22.
  */
-/*
+
 public class YahooWeatherProvider implements WeatherProvider {
 
     private YahooWeatherService yahooWeatherService;
@@ -22,24 +25,29 @@ public class YahooWeatherProvider implements WeatherProvider {
     }
 
 
-    public void getWeatherData() {
+    public WeatherData getWeatherData(Locations location) {
 
-        Channel channel;
+        com.github.fedy2.weather.data.Channel channel;
+
         try {
-            channel = yahooWeatherService.getForecast("498842", DegreeUnit.CELSIUS);
+            channel = yahooWeatherService.getForecast(location.getYahooWoeid(), DegreeUnit.CELSIUS);
+
         } catch (JAXBException | IOException e) {
             e.printStackTrace();
-            return;
+            return null;
         }
 
+        String localisation = location.getName();
         int windSpeed = channel.getWind().getSpeed().intValue();
         int temperature = channel.getItem().getCondition().getTemp();
+        double pressure = channel.getAtmosphere().getPressure();
+        double humidity = channel.getAtmosphere().getHumidity();
 
+        return new WeatherData(localisation, temperature, windSpeed, pressure, humidity);
 
-
-        WeatherStation stacja = WeatherStation.INSTANCE;
+        //WeatherStation stacja = WeatherStation.INSTANCE;
         //stacja.setTemperature(temperature);
         //stacja.setWind(windSpeed);
         //stacja.setCloudCover();
     }
-} */
+}
