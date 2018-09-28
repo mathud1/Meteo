@@ -1,0 +1,19 @@
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="263.0"
+      xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="meteo.gui.Controller">
+<children>
+    <Label text="Temperatura" />
+    <TextField fx:id="temperatureTextField" editable="false" />
+    <Label text="Siła wiatru" />
+    <TextField fx:id="windSpeedTextField" editable="false" />
+    <Label text="Zachmurzenie" />
+    <TextField fx:id="cloudCoverTextField" editable="false" />
+    <Label text="Wybór strategii aktualizacji danych" />
+    <ChoiceBox fx:id="weatherUpdaterChoiceBox" maxWidth="1.7976931348623157E308" />
+</children>
+<padding>
+    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+</padding>
+</VBox>

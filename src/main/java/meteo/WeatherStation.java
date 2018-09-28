@@ -2,8 +2,8 @@ package meteo;
 
 import meteo.assessment.TrekkingAssessmentStrategy;
 import meteo.locations.Locations;
+import meteo.update.OwmWeatherProvider;
 import meteo.update.WeatherProvider;
-import meteo.update.YahooWeatherProvider;
 import net.aksingh.owmjapis.model.param.Weather;
 
 /**
@@ -50,6 +50,7 @@ public enum WeatherStation {
                         System.out.println("Current meteo conditions in " + weatherData.getLocalisation());
                         System.out.println("Temperature: " + weatherData.getTemperature() + " \'C");
                         System.out.println("Wind speed: " + weatherData.getWind() + " m/s");
+
                         System.out.println("Pressure: " + weatherData.getPressure() + " hpa");
                         System.out.println("Humidity: " + weatherData.getHumidity() + " %");
 
@@ -91,9 +92,9 @@ public enum WeatherStation {
 
             WeatherStation stacja = WeatherStation.INSTANCE;
 
-            //stacja.setWeatherProvider(new OwmWeatherProvider());
+            stacja.setWeatherProvider(new OwmWeatherProvider());
             //stacja.setWeatherProvider(new RandomWeatherProvider());
-        stacja.setWeatherProvider((new YahooWeatherProvider()));
+        //stacja.setWeatherProvider((new YahooWeatherProvider()));
             stacja.start();
 
             Thread.sleep(1000);
@@ -104,5 +105,7 @@ public enum WeatherStation {
 
 
     }
+
+
 
 }
