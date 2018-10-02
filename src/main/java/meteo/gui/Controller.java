@@ -1,14 +1,17 @@
 package meteo.gui;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import meteo.WeatherData;
 import meteo.WeatherStation;
+import meteo.WeatherStationObserver;
 import meteo.update.RandomWeatherProvider;
 import meteo.update.YahooWeatherProvider;
 
 
-public class Controller  {
+public class Controller implements WeatherStationObserver {
   @FXML
   private TextField temperatureTextField;
   @FXML
@@ -29,7 +32,7 @@ public class Controller  {
     weatherStation.start();
 
 
-    //weatherStation.addObserver(this);
+    weatherStation.addObserver(this);
 
     weatherUpdaterChoiceBox.getItems().addAll(YAHOO_WEATHER_UPDATER_DISPLAY_NAME, SIMULATOR_WEATHER_UDPATER_DISPLAY_NAME);
     weatherUpdaterChoiceBox.getSelectionModel().selectFirst();
@@ -46,5 +49,15 @@ public class Controller  {
     });
   }
 
+  @Override
+  public void update(WeatherData weatherData) {
+    Platform.runLater(() -> {
+      // WeatherStation weatherStation = WeatherStation.INSTANCE;
+
+      temperatureTextField.setText(String.valueOf(weatherData.getTemperature()));
+      windSpeedTextField.setText(String.valueOf(weatherData.getWind()));
+      //cloudCoverTextField.setText(weatherStation.getCloudCover().toString());
+    });
+  }
 
 }

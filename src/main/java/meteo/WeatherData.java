@@ -92,4 +92,16 @@ public class WeatherData {
     public void setOverall(List<Weather> overall) {
         this.overall = overall;
     }
+
+    @Override
+    public String toString() {
+        return "Current meteo conditions in " + localisation + '\n' +
+                "temperature: " + temperature + "\'C" + '\n' +
+                ", wind=" + wind +
+                ", pressure=" + pressure +
+                ", cloudCover=" + cloudCover +
+                ", humidity=" + humidity +
+                ", overall=" + overall +
+                '}';
+    }
 }
