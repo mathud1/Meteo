@@ -16,9 +16,11 @@ public class WeatherData {
     private double cloudCover;
     private double humidity;
     List<Weather> overall;
+    String description;
 
     //pełny konstruktor dla wszystkich warunków
-    public WeatherData(String localisation, double temperature, double wind, double pressure, double cloudCover, double humidity, List<Weather> overall) {
+    public WeatherData(String localisation, double temperature, double wind, double pressure, double cloudCover,
+                       double humidity, List<Weather> overall, String description) {
         this.localisation = localisation;
         this.temperature = temperature;
         this.wind = wind;
@@ -26,6 +28,7 @@ public class WeatherData {
         this.cloudCover = cloudCover;
         this.humidity = humidity;
         this.overall = overall;
+        this.description = description;
     }
 
     //konstruktor dla yahoo
@@ -36,6 +39,7 @@ public class WeatherData {
         this.pressure = pressure;
         this.humidity = humidity;
     }
+
 
     public String getLocalisation() {
         return localisation;
@@ -93,15 +97,18 @@ public class WeatherData {
         this.overall = overall;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     @Override
     public String toString() {
         return "Current meteo conditions in " + localisation + '\n' +
-                "temperature: " + temperature + "\'C" + '\n' +
-                ", wind=" + wind +
-                ", pressure=" + pressure +
-                ", cloudCover=" + cloudCover +
-                ", humidity=" + humidity +
-                ", overall=" + overall +
-                '}';
+                "temperature: " + temperature + " \'C" + '\n' +
+                "wind speed: " + wind + " m/s" + '\n' +
+                "pressure: " + pressure + " hpa" + '\n' +
+                "humidity: " + humidity + " %" + '\n' +
+                "cloudCover: " + cloudCover + " %" + '\n' +
+                "description: " + description;
     }
 }

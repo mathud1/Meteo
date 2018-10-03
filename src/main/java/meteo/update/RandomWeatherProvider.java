@@ -15,16 +15,7 @@ import java.util.Random;
 
 public class RandomWeatherProvider implements WeatherProvider {
 
-    /*
-    @Override
-    public void getWeatherData() {
-        WeatherStation stacja = WeatherStation.INSTANCE;
-        Random random = new Random();
-       // stacja.setTemperature(random.nextInt(40));
-        //stacja.setWind(random.nextInt(99));
-       // stacja.setCloudCover(99);
-    }
-    */
+
     public WeatherData getWeatherData(Locations location) {
 
         Random random = new Random();
@@ -36,8 +27,10 @@ public class RandomWeatherProvider implements WeatherProvider {
         double humidity = random.nextInt(100);
         double cloudCover = random.nextInt(100);
         List<Weather> overall = null;
+        String description = "random conditions";
 
-        return new WeatherData(localisation, temperature, windSpeed, pressure, humidity, cloudCover, overall);
+        return new WeatherData(localisation, temperature, windSpeed, pressure, humidity, cloudCover, overall,
+                description);
     }
 
 

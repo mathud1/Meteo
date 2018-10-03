@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<HBox xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="meteo.gui.Controller">
+   <children>
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@test.css">
+      <children>
+          <Label text="Localisation">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+          <TextField fx:id="localisationTextField" editable="false">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </VBox.margin>
+            </TextField>
+          <Label text="Temperature (Celsius degrees)">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+          <TextField fx:id="temperatureTextField" editable="false">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </VBox.margin>
+            </TextField>
+          <Label text="Wind speed (m / s)">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+          <TextField fx:id="windSpeedTextField" editable="false">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </VBox.margin>
+            </TextField>
+          <Label text="Pressure (hpa)">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+          <TextField fx:id="pressureTextField" editable="false">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </VBox.margin>
+            </TextField>
+          <Label text="Description (overall)">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+          <TextField fx:id="descriptionTextField" editable="false">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </VBox.margin>
+            </TextField>
+          <Label text="Data source">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+          <ChoiceBox fx:id="weatherUpdaterChoiceBox" maxWidth="1.7976931348623157E308">
+               <effect>
+                  <DropShadow color="#ae1919" />
+               </effect>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
+            </ChoiceBox>
+      </children>
+      <padding>
+          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+      </padding>
+      </VBox>
+      <VBox>
+         <children>
+          <Label text="Humidity ( % )">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+          <TextField fx:id="humidityTextField" editable="false">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </VBox.margin>
+            </TextField>
+            <PieChart fx:id="humidityChart" />
+          <Label text="Cloud cover ( % )">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+          <TextField fx:id="cloudCoverTextField" editable="false">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </VBox.margin>
+            </TextField>
+            <PieChart fx:id="cloudChart" />
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </VBox>
+   </children>
+</HBox>

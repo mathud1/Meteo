@@ -35,11 +35,13 @@ public class OwmCurrentWeather {
 
         System.out.println("Cloud cover: " + (cwd.getCloudData().getCloud()) + " %");
 
+        System.out.println("Opis: " + String.valueOf(cwd.getWeatherList().get(0).getMoreInfo()));
 
         List<Weather> overall = cwd.getWeatherList();
 
         for (Weather object: overall)
             System.out.println(object.getMoreInfo());
+        System.out.println(overall);
 
 
 

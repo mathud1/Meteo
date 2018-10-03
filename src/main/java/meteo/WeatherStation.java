@@ -19,18 +19,17 @@ public enum WeatherStation {
     private WeatherProvider weatherProvider;
     private WeatherDataContainer weatherDataContainer = new WeatherDataContainer();
 
-  private Set<WeatherStationObserver> observers;
+    private Set<WeatherStationObserver> observers;
 
-  //private WeatherData weatherData;
-
-  WeatherStation() {
-    observers = new HashSet<>();
-  }
+    WeatherStation() {
+        observers = new HashSet<>();
+    }
 
 
     public boolean isOn() {
         return on;
     }
+
     public void setOn(boolean on) {
         this.on = on;
     }
@@ -50,38 +49,28 @@ public enum WeatherStation {
             Thread weatherThread1 = new Thread(() -> {
                 while (on) {
                     System.out.println("Updating...");
+                    System.out.println();
 
                     for (Locations location : Locations.values()) {
                         WeatherData weatherData = weatherProvider.getWeatherData(location);
 
-                        /*System.out.println("-------------------");
-                        System.out.println("Current meteo conditions in " + weatherData.getLocalisation());
-                        System.out.println("Temperature: " + weatherData.getTemperature() + " \'C");
-                        System.out.println("Wind speed: " + weatherData.getWind() + " m/s");
-
-                        System.out.println("Pressure: " + weatherData.getPressure() + " hpa");
-                        System.out.println("Humidity: " + weatherData.getHumidity() + " %");
-
-                        // Należy sprawdzić, czy istnieją dane
-                        System.out.println("Cloud cover: " + weatherData.getCloudCover() + " %");
-
-
-                        if (weatherData.getOverall() != null) {
-                            for (Weather object : weatherData.getOverall())
-                                System.out.println(object.getMoreInfo());
-                        }*/
-
-
-
 
                         weatherDataContainer.appendData(location, weatherData);
-                      System.out.println(weatherData.toString());
-                      notifyObservers(weatherData);
+                        System.out.println(weatherData.toString());
+                        notifyObservers(weatherData);
                         System.out.println("Rating (out of 5): " + weatherDataContainer.rateLocations(new TrekkingAssessmentStrategy()).get(location));
+                        System.out.println("Source: " + this.getWeatherProvider().getClass().getName());
+
+                        System.out.println();
+                        try {
+                            Thread.sleep(10000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     try {
-                        Thread.sleep(5000);
+                        Thread.sleep(10000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -102,26 +91,19 @@ public enum WeatherStation {
     public static void main(String[] args) throws InterruptedException {
 
 
+        WeatherStation stacja = WeatherStation.INSTANCE;
 
-
-            WeatherStation stacja = WeatherStation.INSTANCE;
-
-            stacja.setWeatherProvider(new OwmWeatherProvider());
-            //stacja.setWeatherProvider(new RandomWeatherProvider());
+        stacja.setWeatherProvider(new OwmWeatherProvider());
+        //stacja.setWeatherProvider(new RandomWeatherProvider());
         //stacja.setWeatherProvider((new YahooWeatherProvider()));
-            stacja.start();
+        stacja.start();
 
-            Thread.sleep(1000);
+        Thread.sleep(5000);
 
-            stacja.stop();
-
-
+        stacja.stop();
 
 
     }
-
-
-
 
 
     public void addObserver(WeatherStationObserver observer) {
@@ -135,7 +117,6 @@ public enum WeatherStation {
     public void notifyObservers(WeatherData weatherData) {
         observers.forEach(observer -> observer.update(weatherData));
     }
-
 
 
 }

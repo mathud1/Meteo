@@ -40,14 +40,10 @@ public class YahooWeatherProvider implements WeatherProvider {
         String localisation = location.getName();
         int windSpeed = channel.getWind().getSpeed().intValue();
         int temperature = channel.getItem().getCondition().getTemp();
-        double pressure = channel.getAtmosphere().getPressure();
+        double pressure = Math.round(channel.getAtmosphere().getPressure() / 6894.75);
         double humidity = channel.getAtmosphere().getHumidity();
 
         return new WeatherData(localisation, temperature, windSpeed, pressure, humidity);
 
-        //WeatherStation stacja = WeatherStation.INSTANCE;
-        //stacja.setTemperature(temperature);
-        //stacja.setWind(windSpeed);
-        //stacja.setCloudCover();
     }
 }

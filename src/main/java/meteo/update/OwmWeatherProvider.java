@@ -14,11 +14,7 @@ import java.util.List;
  */
 public class OwmWeatherProvider implements WeatherProvider {
 
-   private OWM owm;
-
-   /* public void setLocation(String location) {
-        this.location = location;
-    }*/
+    private OWM owm;
 
     public OwmWeatherProvider() {
         this.owm = new OWM("***REMOVED***");
@@ -30,32 +26,25 @@ public class OwmWeatherProvider implements WeatherProvider {
         CurrentWeather cwd = null;
 
 
-            try {
-                cwd = owm.currentWeatherByCityName(location.getName());
-            } catch (APIException e) {
-                e.printStackTrace();
-            }
+        try {
+            cwd = owm.currentWeatherByCityName(location.getName());
+        } catch (APIException e) {
+            e.printStackTrace();
+        }
 
 
         String localisation = cwd.getCityName();
-        double windSpeed = cwd.getWindData().getSpeed() ;
+        double windSpeed = cwd.getWindData().getSpeed();
         double temperature = Math.round(cwd.getMainData().getTemp() - 273.15);
         double pressure = cwd.getMainData().getPressure();
         double humidity = cwd.getMainData().getHumidity();
         double cloudCover = cwd.getCloudData().getCloud();
         List<Weather> overall = cwd.getWeatherList();
+        String description = String.valueOf(cwd.getWeatherList().get(0).getMoreInfo());
 
 
-        /*WeatherStation stacja = WeatherStation.INSTANCE;
-        stacja.setLocalisation(localisation);
-        stacja.setWind(windSpeed);
-        //stacja.setTemperature(temperature);
-        stacja.setPressure(pressure);
-        stacja.setHumidity(humidity);
-        stacja.setCloudCover(cloudCover);
-        stacja.setOverall(overall);*/
-
-        return new WeatherData(localisation, temperature, windSpeed, pressure, humidity, cloudCover, overall);
+        return new WeatherData(localisation, temperature, windSpeed, pressure, humidity, cloudCover, overall,
+                description);
 
     }
 
