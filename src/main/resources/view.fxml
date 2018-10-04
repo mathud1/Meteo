@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import eu.hansolo.medusa.Gauge?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.ChoiceBox?>
@@ -44,6 +45,7 @@
          <VBox.margin>
             <Insets bottom="5.0" top="5.0" />
          </VBox.margin></TextField>
+      <Gauge fx:id="windGauge" />
     <Label text="Pressure (hpa)">
          <font>
             <Font size="14.0" />

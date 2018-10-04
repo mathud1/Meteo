@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import eu.hansolo.medusa.Gauge?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.ChoiceBox?>
@@ -10,10 +11,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<HBox xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="meteo.gui.Controller">
+<HBox xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="meteo.gui.Controller" stylesheets="@test.css">
    <children>
-      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@test.css">
+      <VBox alignment="CENTER" stylesheets="@test.css">
       <children>
           <Label text="Localisation">
                <font>
@@ -28,6 +29,7 @@
                   <Insets bottom="5.0" top="5.0" />
                </VBox.margin>
             </TextField>
+            <Gauge fx:id="tempGauge" minWidth="300.0" />
           <Label text="Temperature (Celsius degrees)">
                <font>
                   <Font size="14.0" />
@@ -41,32 +43,24 @@
                   <Insets bottom="5.0" top="5.0" />
                </VBox.margin>
             </TextField>
-          <Label text="Wind speed (m / s)">
+            <Gauge fx:id="windGauge2" />
+            <Label text="Wind speed (km / h)">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-          <TextField fx:id="windSpeedTextField" editable="false">
+            <TextField fx:id="windSpeed2TextField" editable="false">
                <font>
                   <Font size="14.0" />
                </font>
-               <VBox.margin>
-                  <Insets bottom="5.0" top="5.0" />
-               </VBox.margin>
             </TextField>
-          <Label text="Pressure (hpa)">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-          <TextField fx:id="pressureTextField" editable="false">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="5.0" top="5.0" />
-               </VBox.margin>
-            </TextField>
+      </children>
+      <padding>
+          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+      </padding>
+      </VBox>
+      <VBox alignment="CENTER">
+         <children>
           <Label text="Description (overall)">
                <font>
                   <Font size="14.0" />
@@ -80,6 +74,41 @@
                   <Insets bottom="5.0" top="5.0" />
                </VBox.margin>
             </TextField>
+            <Gauge fx:id="pressureGauge" minWidth="300.0" />
+          <Label text="Pressure (hpa)">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+          <TextField fx:id="pressureTextField" editable="false">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </VBox.margin>
+            </TextField>
+            <Gauge fx:id="windGauge" />
+          <Label text="Wind speed (m / s)">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+          <TextField fx:id="windSpeedTextField" editable="false">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </VBox.margin>
+            </TextField>
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </VBox>
+      <VBox alignment="CENTER" prefHeight="715.0" prefWidth="370.0">
+         <children>
           <Label text="Data source">
                <font>
                   <Font size="14.0" />
@@ -90,16 +119,10 @@
                   <DropShadow color="#ae1919" />
                </effect>
                <VBox.margin>
-                  <Insets bottom="10.0" top="10.0" />
+                  <Insets bottom="5.0" top="5.0" />
                </VBox.margin>
             </ChoiceBox>
-      </children>
-      <padding>
-          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-      </padding>
-      </VBox>
-      <VBox>
-         <children>
+            <PieChart fx:id="humidityChart" />
           <Label text="Humidity ( % )">
                <font>
                   <Font size="14.0" />
@@ -113,7 +136,7 @@
                   <Insets bottom="5.0" top="5.0" />
                </VBox.margin>
             </TextField>
-            <PieChart fx:id="humidityChart" />
+            <PieChart fx:id="cloudChart" />
           <Label text="Cloud cover ( % )">
                <font>
                   <Font size="14.0" />
@@ -127,7 +150,6 @@
                   <Insets bottom="5.0" top="5.0" />
                </VBox.margin>
             </TextField>
-            <PieChart fx:id="cloudChart" />
          </children>
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
