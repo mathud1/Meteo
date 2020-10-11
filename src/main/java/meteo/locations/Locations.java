@@ -11,8 +11,8 @@ public enum Locations {
     ZYWIEC("Żywiec", "529462"),
     SZCZYRK("Szczyrk", "521739");
 
-    private String name;
-    private String yahooWoeid;
+    private final String name;
+    private final String yahooWoeid;
 
     Locations(String name, String yahooWoeid) {
         this.name = name;
