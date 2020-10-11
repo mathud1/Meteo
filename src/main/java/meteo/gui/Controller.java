@@ -49,9 +49,9 @@ public class Controller implements WeatherStationObserver {
     @FXML
     private ChoiceBox<String> weatherUpdaterChoiceBox;
 
-    private final static String OWM_WEATHER_PROVIDER_DISPLAY_NAME = "Open Weather Map";
-    private final static String YAHOO_WEATHER_PROVIDER_DISPLAY_NAME = "Yahoo Weather";
-    private final static String SIMULATOR_WEATHER_PROVIDER_DISPLAY_NAME = "Simulator (random)";
+    private static final String OWM_WEATHER_PROVIDER_DISPLAY_NAME = "Open Weather Map";
+    private static final String YAHOO_WEATHER_PROVIDER_DISPLAY_NAME = "Yahoo Weather";
+    private static final String SIMULATOR_WEATHER_PROVIDER_DISPLAY_NAME = "Simulator (random)";
 
 
     public void initialize() {

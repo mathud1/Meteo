@@ -1,50 +1,47 @@
-package meteo.test;/* To jest klasa testująca API OWM. Nie jest potrzebna dla funkcjonowania całości aplikacji */
+package meteo.test;
 
+import java.util.Objects;
 import net.aksingh.owmjapis.api.APIException;
 import net.aksingh.owmjapis.core.OWM;
 import net.aksingh.owmjapis.model.CurrentWeather;
 import net.aksingh.owmjapis.model.param.Weather;
 
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class OwmCurrentWeather {
 
-    public static void main(String[] args)
-            throws APIException {
+    private static final Logger LOG = LoggerFactory.getLogger(OwmCurrentWeather.class);
 
+    public static void main(String[] args) throws APIException {
 
         OWM owm = new OWM("");
 
-
-
         CurrentWeather cwd = owm.currentWeatherByCityName("Żywiec");
 
+        LOG.info("City: {}", cwd.getCityName());
 
+        if (cwd.getMainData() != null && cwd.getMainData().getTemp() != null) {
+            LOG.info("Temperature: {}", (Math.round(cwd.getMainData().getTemp() - 273.15)) + " 'C");
+        }
+        LOG.info("Pressure: {}", (Objects.requireNonNull(cwd.getMainData()).getPressure() + " hpa"));
 
+        LOG.info("Wind speed: {}", (Objects.requireNonNull(cwd.getWindData()).getSpeed() + " m/s"));
 
-        System.out.println("City: " + cwd.getCityName());
+        LOG.info("Humidity: {}",  (cwd.getMainData().getHumidity()) + " %");
 
+        LOG.info("Cloud cover: {}", (Objects.requireNonNull(cwd.getCloudData()).getCloud()) + " %");
 
-        System.out.println("Temperature: " + (Math.round(cwd.getMainData().getTemp() - 273.15)) + " \'C");
-
-        System.out.println("Pressure: " + (cwd.getMainData().getPressure() + " hpa"));
-
-        System.out.println("Wind speed: " + (cwd.getWindData().getSpeed() + " m/s"));
-
-        System.out.println("Humidity: " + (cwd.getMainData().getHumidity()) + " %");
-
-        System.out.println("Cloud cover: " + (cwd.getCloudData().getCloud()) + " %");
-
-        System.out.println("Opis: " + String.valueOf(cwd.getWeatherList().get(0).getMoreInfo()));
+        LOG.info("Opis: {}", Objects.requireNonNull(cwd.getWeatherList()).get(0).getMoreInfo());
 
         List<Weather> overall = cwd.getWeatherList();
 
-        for (Weather object: overall)
-            System.out.println(object.getMoreInfo());
-        System.out.println(overall);
-
-
-
+        for (Weather object: overall) {
+            LOG.info(object.getMoreInfo());
+        }
+        LOG.info(String.valueOf(overall));
 
     }
+
 }
