@@ -2,6 +2,8 @@
 
 package meteo.update;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import meteo.WeatherData;
 import meteo.locations.Locations;
 import net.aksingh.owmjapis.model.param.Weather;
@@ -16,20 +18,20 @@ import java.util.Random;
 public class RandomWeatherProvider implements WeatherProvider {
 
 
-    public WeatherData getWeatherData(Locations location) {
+    public WeatherData getWeatherData(Locations location) throws NoSuchAlgorithmException {
 
-        Random random = new Random();
+        Random random = SecureRandom.getInstanceStrong();
 
         String localisation = location.getName();
         double windSpeed = random.nextInt(30);
         double temperature = random.nextInt(30);
-        double pressure = 960 + random.nextInt(90);
+        double pressure = (double) 960 + random.nextInt(90);
         double humidity = random.nextInt(100);
         double cloudCover = random.nextInt(100);
         List<Weather> overall = null;
         String description = "random conditions";
 
-        return new WeatherData(localisation, temperature, windSpeed, pressure, humidity, cloudCover, overall,
+        return new WeatherData(localisation, temperature, windSpeed, pressure, humidity, cloudCover, null,
                 description);
     }
 

@@ -13,7 +13,7 @@ public class OwmCurrentWeather {
             throws APIException {
 
 
-        OWM owm = new OWM("***REMOVED***");
+        OWM owm = new OWM("");
 
 
 

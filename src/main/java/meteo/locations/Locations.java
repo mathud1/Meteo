@@ -20,7 +20,7 @@ public enum Locations {
 
     Locations(String name, String yahooWoeid) {
         this.name = name;
-        this.yahooWoeid = yahooWoeid;
+        this.yahooWoeid = yahooWoeid;   
     }
 
     public String getName() {

@@ -77,6 +77,9 @@ public class Controller implements WeatherStationObserver {
                 case SIMULATOR_WEATHER_PROVIDER_DISPLAY_NAME:
                     weatherStation.setWeatherProvider(new RandomWeatherProvider());
                     break;
+                default:
+                    weatherStation.setWeatherProvider(null);
+                    break;
             }
         });
     }

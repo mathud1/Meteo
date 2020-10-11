@@ -94,8 +94,6 @@ public enum WeatherStation {
         WeatherStation stacja = WeatherStation.INSTANCE;
 
         stacja.setWeatherProvider(new OwmWeatherProvider());
-        //stacja.setWeatherProvider(new RandomWeatherProvider());
-        //stacja.setWeatherProvider((new YahooWeatherProvider()));
         stacja.start();
 
         Thread.sleep(5000);

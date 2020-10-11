@@ -10,17 +10,6 @@ package meteo.test;
 public class LocationsStream {
 
     public static void main(String[] args) {
-
-        //Można enumerować po elementach przez stream:
-        /*
-        meteo.locations.Locations.stream()
-                .forEach(System.out::println);
-        */
-
-
-        // Testowa enumeracja przez for each
-       /* for (Locations location : Locations.values()) {
-            System.out.println(location.getTemperature());
-        }*/
+        // sonar
     }
 }
