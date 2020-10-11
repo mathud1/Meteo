@@ -14,10 +14,6 @@ public enum Locations {
     private String name;
     private String yahooWoeid;
 
-    Locations(String name) {
-        this.name = name;
-    }
-
     Locations(String name, String yahooWoeid) {
         this.name = name;
         this.yahooWoeid = yahooWoeid;   
@@ -30,11 +26,5 @@ public enum Locations {
     public String getYahooWoeid() {
         return yahooWoeid;
     }
-
-    // Można enumerować po elementach przez stream:
-   /* public static Stream<meteo.locations.Locations> stream() {
-        return Stream.of(meteo.locations.Locations.values());
-    }*/
-
 
 }
