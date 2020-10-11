@@ -15,7 +15,7 @@ public class OwmForecast {
     public static void main(String[] args) throws APIException {
 
 
-        OWM owmForecast = new OWM("***REMOVED***");
+        OWM owmForecast = new OWM("");
 
         HourlyWeatherForecast forecast = owmForecast.hourlyWeatherForecastByCityName("Katowice");
 

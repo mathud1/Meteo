@@ -17,7 +17,7 @@ public class OwmWeatherProvider implements WeatherProvider {
     private OWM owm;
 
     public OwmWeatherProvider() {
-        this.owm = new OWM("***REMOVED***");
+        this.owm = new OWM("");
     }
 
     public WeatherData getWeatherData(Locations location) {
