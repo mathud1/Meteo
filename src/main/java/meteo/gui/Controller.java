@@ -18,6 +18,7 @@ import meteo.update.YahooWeatherProvider;
 
 
 public class Controller implements WeatherStationObserver {
+
     @FXML
     private TextField localisationTextField;
     @FXML
@@ -45,7 +46,7 @@ public class Controller implements WeatherStationObserver {
     @FXML
     private PieChart cloudChart;
     @FXML
-    private TextField descriptionTextField;
+    private java.awt.TextField descriptionTextField;
     @FXML
     private ChoiceBox<String> weatherUpdaterChoiceBox;
 
@@ -83,10 +84,6 @@ public class Controller implements WeatherStationObserver {
             }
         });
     }
-
-
-
-
 
     @Override
     public void update(WeatherData weatherData) {
@@ -154,7 +151,6 @@ public class Controller implements WeatherStationObserver {
             tempGauge.setNeedleShape(Gauge.NeedleShape.FLAT);
             tempGauge.setAnimated(true);
         });
-
 
     }
 

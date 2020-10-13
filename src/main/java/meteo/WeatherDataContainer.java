@@ -1,5 +1,3 @@
-// przykładowa klasa do oceniania warunków pogodowych
-
 package meteo;
 
 import meteo.assessment.AssessmentStrategy;
@@ -13,8 +11,6 @@ import java.util.stream.Collectors;
 /**
  * Created by Matt on 20.09.2018 at 20:19.
  */
-
-
 
 public class WeatherDataContainer {
     private Map<Locations, WeatherData> weatherDataByLocation;
@@ -38,9 +34,6 @@ public class WeatherDataContainer {
                         key -> assessmentStrategy.assess(weatherDataByLocation.get(key))));
 
     }
-
-
-
 
 }
 

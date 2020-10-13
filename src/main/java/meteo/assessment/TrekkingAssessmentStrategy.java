@@ -5,6 +5,7 @@ import meteo.WeatherData;
 /**
  * Created by Matt on 20.09.2018 at 19:52.
  */
+
 public class TrekkingAssessmentStrategy implements AssessmentStrategy {
 
     private int assessTemperature(double temp) {
@@ -34,4 +35,5 @@ public class TrekkingAssessmentStrategy implements AssessmentStrategy {
                 + assessClouds(weatherData.getCloudCover());
 
     }
+
 }

@@ -1,5 +1,6 @@
 package meteo;
 
+import java.security.NoSuchAlgorithmException;
 import meteo.assessment.TrekkingAssessmentStrategy;
 import meteo.locations.Locations;
 import meteo.update.OwmWeatherProvider;
@@ -11,6 +12,7 @@ import java.util.Set;
 /**
  * Created by Matt on 11.09.2018 at 18:37.
  */
+
 public enum WeatherStation {
     INSTANCE;
 
@@ -52,8 +54,12 @@ public enum WeatherStation {
                     System.out.println();
 
                     for (Locations location : Locations.values()) {
-                        WeatherData weatherData = weatherProvider.getWeatherData(location);
-
+                        WeatherData weatherData = null;
+                        try {
+                            weatherData = weatherProvider.getWeatherData(location);
+                        } catch (NoSuchAlgorithmException e) {
+                            e.printStackTrace();
+                        }
 
                         weatherDataContainer.appendData(location, weatherData);
                         System.out.println(weatherData.toString());
@@ -115,6 +121,5 @@ public enum WeatherStation {
     public void notifyObservers(WeatherData weatherData) {
         observers.forEach(observer -> observer.update(weatherData));
     }
-
 
 }

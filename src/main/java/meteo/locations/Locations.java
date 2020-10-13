@@ -3,6 +3,7 @@ package meteo.locations;
 /**
  * Created by Matt on 14.09.2018 at 19:24.
  */
+
 public enum Locations {
     ISTEBNA("Istebna", "496281"),
     WISLA("Wisła", "525053"),

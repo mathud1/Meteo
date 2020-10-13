@@ -6,15 +6,15 @@ import net.aksingh.owmjapis.api.APIException;
 import net.aksingh.owmjapis.core.OWM;
 import net.aksingh.owmjapis.model.CurrentWeather;
 import net.aksingh.owmjapis.model.param.Weather;
-
 import java.util.List;
 
 /**
  * Created by Matt on 11.09.2018 at 20:41.
  */
+
 public class OwmWeatherProvider implements WeatherProvider {
 
-    private OWM owm;
+    private final OWM owm;
 
     public OwmWeatherProvider() {
         this.owm = new OWM("");
@@ -22,16 +22,13 @@ public class OwmWeatherProvider implements WeatherProvider {
 
     public WeatherData getWeatherData(Locations location) {
 
-
         CurrentWeather cwd = null;
-
 
         try {
             cwd = owm.currentWeatherByCityName(location.getName());
         } catch (APIException e) {
             e.printStackTrace();
         }
-
 
         String localisation = cwd.getCityName();
         double windSpeed = cwd.getWindData().getSpeed();
