@@ -8,31 +8,34 @@ import meteo.update.WeatherProvider;
 
 import java.util.HashSet;
 import java.util.Set;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Created by Matt on 11.09.2018 at 18:37.
  */
 
 public enum WeatherStation {
+
     INSTANCE;
 
+    private static final Logger LOG = LoggerFactory.getLogger(WeatherStation.class);
 
     private boolean on;
     private WeatherProvider weatherProvider;
-    private WeatherDataContainer weatherDataContainer = new WeatherDataContainer();
+    private final WeatherDataContainer weatherDataContainer = new WeatherDataContainer();
 
-    private Set<WeatherStationObserver> observers;
+    private final Set<WeatherStationObserver> observers;
 
     WeatherStation() {
         observers = new HashSet<>();
     }
 
-
     public boolean isOn() {
         return on;
     }
 
-    public void setOn(boolean on) {
+    void setOn(boolean on) {
         this.on = on;
     }
 
@@ -50,8 +53,7 @@ public enum WeatherStation {
             on = true;
             Thread weatherThread1 = new Thread(() -> {
                 while (on) {
-                    System.out.println("Updating...");
-                    System.out.println();
+                    LOG.info("Updating...");
 
                     for (Locations location : Locations.values()) {
                         WeatherData weatherData = null;
@@ -62,29 +64,29 @@ public enum WeatherStation {
                         }
 
                         weatherDataContainer.appendData(location, weatherData);
-                        System.out.println(weatherData.toString());
+                        LOG.info(String.valueOf(weatherData));
                         notifyObservers(weatherData);
-                        System.out.println("Rating (out of 5): " + weatherDataContainer.rateLocations(new TrekkingAssessmentStrategy()).get(location));
-                        System.out.println("Source: " + this.getWeatherProvider().getClass().getName());
+                        LOG.info("Rating (out of 5): {}", weatherDataContainer.rateLocations(new TrekkingAssessmentStrategy()).get(location));
+                        LOG.info("Source: {}", this.getWeatherProvider().getClass().getName());
 
-                        System.out.println();
                         try {
                             Thread.sleep(5000);
                         } catch (InterruptedException e) {
-                            e.printStackTrace();
+                            LOG.error(e.getMessage());
+                            Thread.currentThread().interrupt();
                         }
                     }
 
                     try {
                         Thread.sleep(10000);
                     } catch (InterruptedException e) {
-                        e.printStackTrace();
+                        LOG.error(e.getMessage());
+                        Thread.currentThread().interrupt();
                     }
                 }
 
             });
             weatherThread1.start();
-
 
         }
 
@@ -96,16 +98,14 @@ public enum WeatherStation {
 
     public static void main(String[] args) throws InterruptedException {
 
+        WeatherStation station = WeatherStation.INSTANCE;
 
-        WeatherStation stacja = WeatherStation.INSTANCE;
-
-        stacja.setWeatherProvider(new OwmWeatherProvider());
-        stacja.start();
+        station.setWeatherProvider(new OwmWeatherProvider());
+        station.start();
 
         Thread.sleep(5000);
 
-        stacja.stop();
-
+        station.stop();
 
     }
 

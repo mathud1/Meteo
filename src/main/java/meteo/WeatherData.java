@@ -7,7 +7,10 @@ import java.util.List;
 /**
  * Created by Matt on 20.09.2018 at 20:20.
  */
+
 public class WeatherData {
+
+    //TODO use builder design pattern
 
     private String localisation;
     private double temperature;
@@ -18,7 +21,6 @@ public class WeatherData {
     List<Weather> overall;
     String description;
 
-    //pełny konstruktor dla wszystkich warunków
     public WeatherData(String localisation, double temperature, double wind, double pressure, double cloudCover,
                        double humidity, List<Weather> overall, String description) {
         this.localisation = localisation;
@@ -31,7 +33,6 @@ public class WeatherData {
         this.description = description;
     }
 
-    //konstruktor dla yahoo
     public WeatherData(String localisation, double temperature, double wind, double pressure, double humidity) {
         this.localisation = localisation;
         this.temperature = temperature;
@@ -104,11 +105,12 @@ public class WeatherData {
     @Override
     public String toString() {
         return "Current meteo conditions in " + localisation + '\n' +
-                "temperature: " + temperature + " \'C" + '\n' +
+                "temperature: " + temperature + " 'C" + '\n' +
                 "wind speed: " + wind + " m/s" + '\n' +
                 "pressure: " + pressure + " hpa" + '\n' +
                 "humidity: " + humidity + " %" + '\n' +
                 "cloudCover: " + cloudCover + " %" + '\n' +
                 "description: " + description;
     }
+
 }

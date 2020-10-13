@@ -1,5 +1,6 @@
 package meteo.update;
 
+import java.util.Objects;
 import meteo.WeatherData;
 import meteo.locations.Locations;
 import net.aksingh.owmjapis.api.APIException;
@@ -30,7 +31,8 @@ public class OwmWeatherProvider implements WeatherProvider {
             e.printStackTrace();
         }
 
-        String localisation = cwd.getCityName();
+        //TODO refactor structure to defend against null
+        String localisation = Objects.requireNonNull(cwd).getCityName();
         double windSpeed = cwd.getWindData().getSpeed();
         double temperature = Math.round(cwd.getMainData().getTemp() - 273.15);
         double pressure = cwd.getMainData().getPressure();
@@ -38,7 +40,6 @@ public class OwmWeatherProvider implements WeatherProvider {
         double cloudCover = cwd.getCloudData().getCloud();
         List<Weather> overall = cwd.getWeatherList();
         String description = String.valueOf(cwd.getWeatherList().get(0).getMoreInfo());
-
 
         return new WeatherData(localisation, temperature, windSpeed, pressure, humidity, cloudCover, overall,
                 description);

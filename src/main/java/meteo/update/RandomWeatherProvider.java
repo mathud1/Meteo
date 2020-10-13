@@ -35,5 +35,4 @@ public class RandomWeatherProvider implements WeatherProvider {
                 description);
     }
 
-
 }

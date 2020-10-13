@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
  */
 
 public class WeatherDataContainer {
+
     private Map<Locations, WeatherData> weatherDataByLocation;
 
     public Map<Locations, WeatherData> getWeatherDataByLocation() {
@@ -28,11 +29,11 @@ public class WeatherDataContainer {
     }
 
     public Map<Locations, Integer> rateLocations(AssessmentStrategy assessmentStrategy) {
+
         return weatherDataByLocation.keySet()
                 .stream()
                 .collect(Collectors.toMap(key -> key,
                         key -> assessmentStrategy.assess(weatherDataByLocation.get(key))));
-
     }
 
 }

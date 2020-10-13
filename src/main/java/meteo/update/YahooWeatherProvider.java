@@ -17,13 +17,14 @@ public class YahooWeatherProvider implements WeatherProvider {
     private YahooWeatherService yahooWeatherService;
 
     public YahooWeatherProvider() {
+
         try {
             this.yahooWeatherService = new YahooWeatherService();
         } catch (JAXBException e) {
             e.printStackTrace();
         }
-    }
 
+    }
 
     public WeatherData getWeatherData(Locations location) {
 
@@ -44,6 +45,6 @@ public class YahooWeatherProvider implements WeatherProvider {
         double humidity = channel.getAtmosphere().getHumidity();
 
         return new WeatherData(localisation, temperature, windSpeed, pressure, humidity);
-
     }
+
 }
